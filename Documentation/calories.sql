@@ -75,8 +75,15 @@ SELECT
   day_of_week, ActivityTime, sum(total_calories_by_hour) as agg_calories_by_hour
 from `fitbit_users.totalCalories_by_dayHour`
 group by day_of_week, ActivityTime
-order by day_of_week, ActivityTime ASC;
-# total number of calories burned by all users in each specific day/hour combination
+order by case when day_of_week = 'Sunday' then 10
+              when day_of_week = 'Monday' then 20
+              when day_of_week = 'Tuesday' then 30
+              when day_of_week = 'Wednesday' then 40
+              when day_of_week = 'Thursday' then 50
+              when day_of_week = 'Friday' then 60
+              when day_of_week = 'Saturday' then 70
+              end, ActivityTime ASC;
+# total number of calories burned by all users in each specific day/hour combination in order
 # saved as aggCalories_by_dayHour
 
 SELECT
