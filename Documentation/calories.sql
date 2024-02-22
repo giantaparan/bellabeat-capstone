@@ -71,3 +71,18 @@ order by Id ASC;
 # total number of calories burned by each user
 # saved as totalCalories_by_user
 
+SELECT
+  day_of_week, ActivityTime, sum(total_calories_by_hour) as agg_calories_by_hour
+from `fitbit_users.totalCalories_by_dayHour`
+group by day_of_week, ActivityTime
+order by day_of_week, ActivityTime ASC;
+# total number of calories burned by all users in each specific day/hour combination
+# saved as aggCalories_by_dayHour
+
+SELECT
+  day_of_week, sum(agg_calories_by_hour) as total_calories_by_day
+from `fitbit_users.aggCalories_by_dayHour`
+group by day_of_week
+order by total_calories_by_day DESC;
+# another way to show that Tues-Thurs are the days of the week where most calories are burned
+
