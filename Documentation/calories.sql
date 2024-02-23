@@ -93,3 +93,7 @@ group by day_of_week
 order by total_calories_by_day DESC;
 # another way to show that Tues-Thurs are the days of the week where most calories are burned
 
+SELECT *
+from `fitbit_users.hourlyCalories_agg`
+order by ActivityTime ASC;
+# save as hourlyCalories_agg_clean

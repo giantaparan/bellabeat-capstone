@@ -37,3 +37,10 @@ from `fitbit_users.SleepVsActivity_Minutes`;
 # saved as SleepVsActivity
 # construct scatterplot to show trends between sleep proportion and active minutes, sedentary minutes, calories burned
 
+SELECT
+  FORMAT_DATE('%A', PARSE_DATE('%m/%d/%Y', SUBSTRING(SleepDay, 1, 9))) as day_of_week, sum(TotalMinutesAsleep) as agg_minutes_asleep
+from `fitbit_users.sleepDay`
+group by day_of_week
+order by agg_minutes_asleep DESC;
+# converts SleepDay from string into date, then into day of the week
+# saved as totalSleep_by_day
