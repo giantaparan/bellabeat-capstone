@@ -44,3 +44,12 @@ group by day_of_week
 order by agg_minutes_asleep DESC;
 # converts SleepDay from string into date, then into day of the week
 # saved as totalSleep_by_day
+
+SELECT
+  sum(agg_minutes_asleep)
+from `fitbit_users.totalSleep_by_day`;
+SELECT
+  sum(TotalMinutesAsleep)
+from `fitbit_users.sleepDay`;
+# check that no entries were lost when cleaning
+# both show 173240
