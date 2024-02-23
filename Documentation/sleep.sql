@@ -98,4 +98,12 @@ on `fitbit_users.naps_by_user_agg`.Id=`fitbit_users.dailyActivity_by_user`.Id;
 SELECT * EXCEPT(Id_1), total_VAM+total_FAM+total_LAM as total_active_minutes
 from `fitbit_users.napsVsActivity`
 order by Id ASC;
-# saved by napsVsActivity_clean
+# saved as napsVsActivity_clean
+
+SELECT
+  FORMAT_DATE('%A', sleep_date) as day_of_week, sum(number_naps) as total_naps, sum(total_time_sleeping) as agg_time_sleeping_hours
+from `fitbit_users.naps_by_user`
+group by day_of_week
+order by total_naps DESC;
+# shows number of naps taken in total on each day and how much time is spent sleeping in hours by all consumers
+# saved as naps_by_day
