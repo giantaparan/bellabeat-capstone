@@ -31,3 +31,26 @@ group by `Impact of Wearable on Influence to Buy Other Products`;
 
 ## this will influence what tables we will query to analyze trends in the main data set
 
+SELECT
+  Gender, COUNT(Gender) as count_of_gender
+from `fitbit_users.fitness_survey`
+group by Gender;
+
+SELECT
+  Age, COUNT(Age) as count_of_age
+from `fitbit_users.fitness_survey`
+group by Age;
+# majority of participants in survey are aged Under 18 - 34, maybe worth focusing advertising efforts on these age groups
+
+SELECT
+  Age, `Impact of Wearable On Overall Health`, COUNT(`Impact of Wearable On Overall Health`) as count_of_answer
+from `fitbit_users.fitness_survey`
+group by Age, `Impact of Wearable On Overall Health`
+order by Age ASC;
+
+SELECT
+  DISTINCT(`Impact of Wearable on Influence to Buy Other Products`), COUNT(*) as frequency_of_answer, COUNT(*)/21 as proportion_of_answer
+from `fitbit_users.fitness_survey`
+where Age = 'Under 18' OR Age = '18-24' OR Age = '25-34'
+group by `Impact of Wearable on Influence to Buy Other Products`;
+# for under 18 - 34 year olds, 66% answered that fitness wearables influenced them to buy other products
